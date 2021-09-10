@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "alwaysStrict": true,
+        "allowJs": true,
+        "noImplicitAny": false,
+        "forceConsistentCasingInFileNames": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true,
+        "strict": true,
+        "outDir": "./build",
+        "lib": [ "es2018" ]
+    },
+    "exclude": [
+        "node_modules/**"
+    ],
+    "include": [
+        "./src"
+    ]
+}
