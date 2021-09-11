@@ -19,15 +19,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 exports.__esModule = true;
-exports.unSerialiseIdentity = exports.serialiseIdentity = exports.unstringifyBigInts = exports.stringifyBigInts = exports.genIdentityCommitment = exports.genIdentity = exports.genPubKey = void 0;
-var snarkjs = require('snarkjs');
+exports.unSerialiseIdentity = exports.serialiseIdentity = exports.genIdentityCommitment = exports.genIdentity = exports.genPubKey = void 0;
 var circomlib = __importStar(require("circomlib"));
 var bigintConversion = __importStar(require("bigint-conversion"));
 var crypto = __importStar(require("crypto"));
-var stringifyBigInts = snarkjs.stringifyBigInts;
-exports.stringifyBigInts = stringifyBigInts;
-var unstringifyBigInts = snarkjs.unstringifyBigInts;
-exports.unstringifyBigInts = unstringifyBigInts;
 var genRandomBuffer = function (numBytes) {
     if (numBytes === void 0) { numBytes = 32; }
     return crypto.randomBytes(numBytes);

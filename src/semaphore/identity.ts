@@ -1,10 +1,7 @@
-const snarkjs = require('snarkjs')
 import { SnarkBigInt } from 'maci-crypto'
 import * as circomlib from 'circomlib'
 import * as bigintConversion from 'bigint-conversion';
 import * as crypto from 'crypto'
-const stringifyBigInts: (obj: object) => object = snarkjs.stringifyBigInts
-const unstringifyBigInts: (obj: object) => object = snarkjs.unstringifyBigInts
 
 type EddsaPrivateKey = Buffer
 type EddsaPublicKey = SnarkBigInt[]
@@ -108,8 +105,6 @@ export {
     genPubKey,
     genIdentity,
     genIdentityCommitment,
-    stringifyBigInts,
-    unstringifyBigInts,
     serialiseIdentity,
     unSerialiseIdentity,
 }
