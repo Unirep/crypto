@@ -1,5 +1,5 @@
 /* External Imports */
-import assert from 'assert'
+import * as assert from 'assert'
 
 /* Internal Imports */
 import { newWrappedPoseidonT3Hash } from '../crypto'

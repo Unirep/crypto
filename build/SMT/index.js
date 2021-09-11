@@ -12,4 +12,3 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 exports.__esModule = true;
 __exportStar(require("./SparseMerkleTree"), exports);
 __exportStar(require("./utils"), exports);
-//# sourceMappingURL=index.js.map

@@ -21,10 +21,10 @@ var newWrappedPoseidonT3Hash = function () {
     }
     var result;
     if (elements.length == 1) {
-        result = (0, maci_crypto_1.hashOne)(elements[0]);
+        result = maci_crypto_1.hashOne(elements[0]);
     }
     else if (elements.length == 2) {
-        result = (0, maci_crypto_1.hashLeftRight)(elements[0], elements[1]);
+        result = maci_crypto_1.hashLeftRight(elements[0], elements[1]);
     }
     else {
         throw new Error("elements length should not greater than 2, got " + elements.length);
@@ -39,10 +39,10 @@ var wrappedPoseidonT3Hash = function () {
     }
     var result;
     if (elements.length == 1) {
-        result = (0, maci_crypto_1.hashOne)(elements[0]);
+        result = maci_crypto_1.hashOne(elements[0]);
     }
     else if (elements.length == 2) {
-        result = (0, maci_crypto_1.hashLeftRight)(elements[0], elements[1]);
+        result = maci_crypto_1.hashLeftRight(elements[0], elements[1]);
     }
     else {
         throw new Error("elements length should not greater than 2, got " + elements.length);
@@ -50,4 +50,3 @@ var wrappedPoseidonT3Hash = function () {
     return ethers_1.ethers.utils.hexZeroPad('0x' + result.toString(16), 32);
 };
 exports.wrappedPoseidonT3Hash = wrappedPoseidonT3Hash;
-//# sourceMappingURL=crypto.js.map

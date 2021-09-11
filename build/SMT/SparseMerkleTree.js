@@ -35,20 +35,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 exports.__esModule = true;
 exports.SparseMerkleTreeImpl = void 0;
 /* External Imports */
-var assert_1 = __importDefault(require("assert"));
+var assert = require("assert");
 /* Internal Imports */
 var crypto_1 = require("../crypto");
 var SparseMerkleTreeImpl = /** @class */ (function () {
     function SparseMerkleTreeImpl(db, height) {
         this.db = db;
         this.height = height;
-        (0, assert_1["default"])(height > 0, 'SMT height needs to be > 0');
+        assert(height > 0, 'SMT height needs to be > 0');
         this.numLeaves = BigInt(Math.pow(2, height));
     }
     SparseMerkleTreeImpl.create = function (db, height, zeroHash) {
@@ -93,7 +90,7 @@ var SparseMerkleTreeImpl = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        (0, assert_1["default"])(leafKey < this.numLeaves, "leaf key " + leafKey + " exceeds total number of leaves " + this.numLeaves);
+                        assert(leafKey < this.numLeaves, "leaf key " + leafKey + " exceeds total number of leaves " + this.numLeaves);
                         nodeIndex = leafKey.valueOf() + this.numLeaves.valueOf();
                         return [4 /*yield*/, this.db.get(nodeIndex.toString())];
                     case 1:
@@ -119,7 +116,7 @@ var SparseMerkleTreeImpl = /** @class */ (function () {
                         else
                             sibNodeHash = BigInt(sibNodeHashString);
                         parentNodeIndex = nodeIndex / BigInt(2);
-                        parentHash = isLeftNode ? (0, crypto_1.newWrappedPoseidonT3Hash)(nodeHash, sibNodeHash) : (0, crypto_1.newWrappedPoseidonT3Hash)(sibNodeHash, nodeHash);
+                        parentHash = isLeftNode ? crypto_1.newWrappedPoseidonT3Hash(nodeHash, sibNodeHash) : crypto_1.newWrappedPoseidonT3Hash(sibNodeHash, nodeHash);
                         return [4 /*yield*/, this.db.set(parentNodeIndex.toString(), parentHash.toString())];
                     case 5:
                         _a.sent();
@@ -132,7 +129,7 @@ var SparseMerkleTreeImpl = /** @class */ (function () {
                         i++;
                         return [3 /*break*/, 3];
                     case 7:
-                        (0, assert_1["default"])(nodeIndex === BigInt(1), "Root node index must be 1");
+                        assert(nodeIndex === BigInt(1), "Root node index must be 1");
                         this.root = parentHash;
                         return [2 /*return*/];
                 }
@@ -145,7 +142,7 @@ var SparseMerkleTreeImpl = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        (0, assert_1["default"])(leafKey < this.numLeaves, "leaf key " + leafKey + " exceeds total number of leaves " + this.numLeaves);
+                        assert(leafKey < this.numLeaves, "leaf key " + leafKey + " exceeds total number of leaves " + this.numLeaves);
                         siblingNodeHashes = [];
                         nodeIndex = leafKey.valueOf() + this.numLeaves.valueOf();
                         isLeftNode = nodeIndex % BigInt(2) === BigInt(0) ? true : false;
@@ -170,7 +167,7 @@ var SparseMerkleTreeImpl = /** @class */ (function () {
                         i++;
                         return [3 /*break*/, 1];
                     case 4:
-                        (0, assert_1["default"])(siblingNodeHashes.length == this.height, "Incorrect number of proof entries");
+                        assert(siblingNodeHashes.length == this.height, "Incorrect number of proof entries");
                         return [2 /*return*/, siblingNodeHashes];
                 }
             });
@@ -182,8 +179,8 @@ var SparseMerkleTreeImpl = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        (0, assert_1["default"])(leafKey < this.numLeaves, "leaf key " + leafKey + " exceeds total number of leaves " + this.numLeaves);
-                        (0, assert_1["default"])(proof.length == this.height, "Incorrect number of proof entries");
+                        assert(leafKey < this.numLeaves, "leaf key " + leafKey + " exceeds total number of leaves " + this.numLeaves);
+                        assert(proof.length == this.height, "Incorrect number of proof entries");
                         nodeIndex = leafKey.valueOf() + this.numLeaves.valueOf();
                         return [4 /*yield*/, this.db.get(nodeIndex.toString())];
                     case 1:
@@ -195,7 +192,7 @@ var SparseMerkleTreeImpl = /** @class */ (function () {
                         isLeftNode = nodeIndex % BigInt(2) === BigInt(0) ? true : false;
                         for (_i = 0, proof_1 = proof; _i < proof_1.length; _i++) {
                             sibNodeHash = proof_1[_i];
-                            nodeHash = isLeftNode ? (0, crypto_1.newWrappedPoseidonT3Hash)(nodeHash, sibNodeHash) : (0, crypto_1.newWrappedPoseidonT3Hash)(sibNodeHash, nodeHash);
+                            nodeHash = isLeftNode ? crypto_1.newWrappedPoseidonT3Hash(nodeHash, sibNodeHash) : crypto_1.newWrappedPoseidonT3Hash(sibNodeHash, nodeHash);
                             nodeIndex = nodeIndex / BigInt(2);
                             isLeftNode = nodeIndex % BigInt(2) === BigInt(0) ? true : false;
                         }
@@ -216,10 +213,10 @@ var SparseMerkleTreeImpl = /** @class */ (function () {
                     zeroHash,
                 ];
                 for (i = 1; i < this.height; i++) {
-                    hashes[i] = (0, crypto_1.newWrappedPoseidonT3Hash)(hashes[i - 1], hashes[i - 1]);
+                    hashes[i] = crypto_1.newWrappedPoseidonT3Hash(hashes[i - 1], hashes[i - 1]);
                 }
                 this.zeroHashes = hashes;
-                this.root = (0, crypto_1.newWrappedPoseidonT3Hash)(hashes[this.height - 1], hashes[this.height - 1]);
+                this.root = crypto_1.newWrappedPoseidonT3Hash(hashes[this.height - 1], hashes[this.height - 1]);
                 return [2 /*return*/];
             });
         });
@@ -227,4 +224,3 @@ var SparseMerkleTreeImpl = /** @class */ (function () {
     return SparseMerkleTreeImpl;
 }());
 exports.SparseMerkleTreeImpl = SparseMerkleTreeImpl;
-//# sourceMappingURL=SparseMerkleTree.js.map

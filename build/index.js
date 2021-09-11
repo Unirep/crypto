@@ -13,4 +13,3 @@ exports.__esModule = true;
 __exportStar(require("./semaphore/identity"), exports);
 __exportStar(require("./SMT"), exports);
 __exportStar(require("./crypto"), exports);
-//# sourceMappingURL=index.js.map

@@ -30,8 +30,7 @@ exports.add0x = add0x;
  * @returns the hash of the value.
  */
 var keccak256 = function (value) {
-    var preimage = (0, exports.add0x)(value);
-    return (0, exports.remove0x)(ethers_1.ethers.utils.keccak256(preimage));
+    var preimage = exports.add0x(value);
+    return exports.remove0x(ethers_1.ethers.utils.keccak256(preimage));
 };
 exports.keccak256 = keccak256;
-//# sourceMappingURL=utils.js.map
