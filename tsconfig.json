@@ -1,7 +1,10 @@
 {
     "compilerOptions": {
         "outDir": "./build",
-        "declaration": true
+        "declaration": true,
+        "target": "es2018",
+        "module": "commonjs",
+        "resolveJsonModule": true
     },
     "include": [
         "./src"

@@ -1,8 +1,8 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.keccak256 = exports.add0x = exports.remove0x = exports.bufToHexString = void 0;
-var ethers_1 = require("ethers");
-var bufToHexString = function (buf) {
+const ethers_1 = require("ethers");
+const bufToHexString = (buf) => {
     return '0x' + buf.toString('hex');
 };
 exports.bufToHexString = bufToHexString;
@@ -11,7 +11,7 @@ exports.bufToHexString = bufToHexString;
  * @param str String to modify.
  * @returns the string without "0x".
  */
-var remove0x = function (str) {
+const remove0x = (str) => {
     return str.startsWith('0x') ? str.slice(2) : str;
 };
 exports.remove0x = remove0x;
@@ -20,7 +20,7 @@ exports.remove0x = remove0x;
  * @param str String to modify.
  * @returns the string with "0x".
  */
-var add0x = function (str) {
+const add0x = (str) => {
     return str.startsWith('0x') ? str : '0x' + str;
 };
 exports.add0x = add0x;
@@ -29,8 +29,8 @@ exports.add0x = add0x;
  * @param value Value to hash
  * @returns the hash of the value.
  */
-var keccak256 = function (value) {
-    var preimage = exports.add0x(value);
-    return exports.remove0x(ethers_1.ethers.utils.keccak256(preimage));
+const keccak256 = (value) => {
+    const preimage = (0, exports.add0x)(value);
+    return (0, exports.remove0x)(ethers_1.ethers.utils.keccak256(preimage));
 };
 exports.keccak256 = keccak256;
